@@ -28,20 +28,14 @@ pipeline:
                   identifier: npmtest
                   name: npm_test
                   spec:
-                    command: npm run test
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: npmtest1
-                  name: npm_test
-                  spec:
-                    command: npm run lint
+                    command: vitest run
                   timeout: ""
                   type: Run
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
+        description: ""
