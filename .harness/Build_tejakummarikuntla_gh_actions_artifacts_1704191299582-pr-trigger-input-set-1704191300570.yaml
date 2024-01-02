@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_tejakummarikuntla_gh_actions_artifacts_1704191299582-pr-trigger-input-set
+  identifier: Build_tejakummarikuntla_gh_actions_artifacts_1704191299582prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_tejakummarikuntla_gh_actions_artifacts_1704191299582
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
