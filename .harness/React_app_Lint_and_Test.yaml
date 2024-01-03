@@ -1,0 +1,54 @@
+pipeline:
+  name: "React app - Lint and Test "
+  identifier: React_app_Lint_and_Test
+  projectIdentifier: Product_Exploratory
+  orgIdentifier: default
+  tags: {}
+  properties:
+    ci:
+      codebase:
+        connectorRef: account.tejakummarikuntla
+        repoName: gh-actions-artifacts
+        build: <+input>
+  stages:
+    - stage:
+        name: Get Codebase
+        identifier: Run_Lints
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          caching:
+            enabled: false
+            paths: []
+          slsa_provenance:
+            enabled: false
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Install dependencies
+                  identifier: Install_dependencies
+                  spec:
+                    shell: Sh
+                    command: npm ci
+              - step:
+                  type: Run
+                  name: Lint code
+                  identifier: Lint_code
+                  spec:
+                    shell: Sh
+                    command: npm run lint
+              - step:
+                  type: Run
+                  name: Test code
+                  identifier: Test_code
+                  spec:
+                    shell: Sh
+                    command: npm run test
