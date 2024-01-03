@@ -52,3 +52,69 @@ pipeline:
                   spec:
                     shell: Sh
                     command: npm run test
+    - stage:
+        name: Install deps
+        identifier: Install_deps
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Install dependencies
+                  identifier: Install_dependencies
+                  spec:
+                    shell: Sh
+                    command: npm ci
+    - stage:
+        name: Lint code
+        identifier: Lint_code
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Lint check the code
+                  identifier: Lint_check_the_code
+                  spec:
+                    shell: Sh
+                    command: npm run lint
+    - stage:
+        name: Test code
+        identifier: Test_code
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: false
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: Run
+                  name: Run code tests
+                  identifier: Run_code_tests
+                  spec:
+                    shell: Sh
+                    command: npm run test
