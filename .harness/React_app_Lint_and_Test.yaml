@@ -52,3 +52,27 @@ pipeline:
                   spec:
                     shell: Sh
                     command: npm run test
+    - stage:
+        name: Build and push to Docker
+        identifier: Build_and_push_to_Docker
+        description: ""
+        type: CI
+        spec:
+          cloneCodebase: true
+          platform:
+            os: Linux
+            arch: Amd64
+          runtime:
+            type: Cloud
+            spec: {}
+          execution:
+            steps:
+              - step:
+                  type: BuildAndPushDockerRegistry
+                  name: BuildAndPushDockerRegistry_1
+                  identifier: BuildAndPushDockerRegistry_1
+                  spec:
+                    connectorRef: tejakummarikutla
+                    repo: harness-ci-cd
+                    tags:
+                      - initial
