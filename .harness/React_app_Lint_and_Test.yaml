@@ -52,13 +52,16 @@ pipeline:
                   spec:
                     shell: Sh
                     command: npm run test
+        when:
+          pipelineStatus: Success
+          condition: 1==0
     - stage:
         name: Build and push to Docker
         identifier: Build_and_push_to_Docker
         description: ""
         type: CI
         spec:
-          cloneCodebase: true
+          cloneCodebase: false
           platform:
             os: Linux
             arch: Amd64
@@ -68,11 +71,31 @@ pipeline:
           execution:
             steps:
               - step:
-                  type: BuildAndPushDockerRegistry
-                  name: BuildAndPushDockerRegistry_1
-                  identifier: BuildAndPushDockerRegistry_1
+                  type: SscaOrchestration
+                  name: SscaOrchestration_1
+                  identifier: SscaOrchestration_1
                   spec:
-                    connectorRef: tejakummarikutla
-                    repo: harness-ci-cd
-                    tags:
-                      - initial
+                    attestation:
+                      type: cosign
+                      spec:
+                        privateKey: Teja_CoSign_Key
+                        password: Teja_Cosing_Password
+                    source:
+                      type: image
+                      spec:
+                        connector: tejakummarikutla
+                        image: tejakummarikuntla/rabbitmq_eventexchange
+                    tool:
+                      type: Syft
+                      spec:
+                        format: spdx-json
+                    mode: generation
+                    resources:
+                      limits:
+                        memory: 500Mi
+                        cpu: "0.5"
+          caching:
+            enabled: false
+            paths: []
+          slsa_provenance:
+            enabled: false
