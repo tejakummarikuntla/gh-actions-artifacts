@@ -1,5 +1,5 @@
 pipeline:
-  name: "React app - Lint and Test "
+  name: React app - Lint and Test - Single Stage
   identifier: React_app_Lint_and_Test
   projectIdentifier: Product_Exploratory
   orgIdentifier: default
