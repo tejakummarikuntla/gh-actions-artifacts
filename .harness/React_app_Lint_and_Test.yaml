@@ -54,7 +54,6 @@ pipeline:
                     command: npm run test
         when:
           pipelineStatus: Success
-          condition: 1==0
     - stage:
         name: Build and push to Docker
         identifier: Build_and_push_to_Docker
