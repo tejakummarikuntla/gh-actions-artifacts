@@ -93,6 +93,25 @@ pipeline:
                       limits:
                         memory: 500Mi
                         cpu: "0.5"
+              - step:
+                  type: SscaEnforcement
+                  name: SscaEnforcement_1
+                  identifier: SscaEnforcement_1
+                  spec:
+                    source:
+                      type: image
+                      spec:
+                        connector: tejakummarikutla
+                        image: tejakummarikuntla/rabbitmq_eventexchange
+                    verifyAttestation:
+                      type: cosign
+                    policy:
+                      policySets:
+                        - account.Sample_policy_set
+                    resources:
+                      limits:
+                        memory: 500Mi
+                        cpu: "0.5"
           caching:
             enabled: false
             paths: []
